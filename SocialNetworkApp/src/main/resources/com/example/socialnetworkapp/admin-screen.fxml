@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="container" stylesheets="@messageboxstyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetworkapp.controller.AdminScreen">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@background2.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="46.0" layoutY="37.0" prefHeight="326.0" prefWidth="508.0">
+         <children>
+            <TableView fx:id="userTable" prefHeight="291.0" prefWidth="541.0" styleClass="list-view">
+              <columns>
+                <TableColumn fx:id="id" prefWidth="44.0" text="ID" />
+                <TableColumn fx:id="first_name" prefWidth="90.5" text="First name" />
+                  <TableColumn fx:id="last_name" prefWidth="110.0" text="Last name" />
+                  <TableColumn fx:id="username" prefWidth="93.5" text="Username" />
+                  <TableColumn fx:id="email" prefWidth="68.5" text="E-mail" />
+                  <TableColumn fx:id="password" prefWidth="100.5" text="Password" />
+              </columns>
+            </TableView>
+            <HBox alignment="CENTER" prefHeight="108.0" prefWidth="508.0" styleClass="container">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleLastPage" styleClass="button-box" text="&lt;">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <TextField fx:id="noOfElements" prefHeight="28.0" prefWidth="46.0" styleClass="list-view" />
+                <Button mnemonicParsing="false" onAction="#handleNextPage" styleClass="button-box" text="&gt;">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <ButtonBar prefHeight="82.0" prefWidth="483.0">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#handleAdd" styleClass="button-box" text="Add User">
+                     <font>
+                        <Font name="Candara Light" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleDelete" styleClass="button-box" text="Delete ">
+                     <font>
+                        <Font name="Candara Light" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleUpdate" prefHeight="37.0" prefWidth="119.0" styleClass="button-box" text="Update ">
+                     <font>
+                        <Font name="Candara Light" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" styleClass="button-box" text="Exit">
+                     <font>
+                        <Font name="Candara Light" size="14.0" />
+                     </font>
+                  </Button>
+              </buttons>
+               <VBox.margin>
+                  <Insets right="25.0" />
+               </VBox.margin>
+            </ButtonBar>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

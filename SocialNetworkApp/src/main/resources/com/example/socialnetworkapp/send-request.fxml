@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="container" stylesheets="@messageboxstyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetworkapp.controller.SendRequest">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@background2.png" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" layoutX="38.0" layoutY="27.0" prefHeight="346.0" prefWidth="524.0">
+         <children>
+            <ListView fx:id="userListView" prefHeight="226.0" prefWidth="524.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ListView>
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="524.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleLastPage" styleClass="button-box" text="&lt;" />
+                  <TextField fx:id="noOfElements" prefHeight="25.0" prefWidth="34.0" styleClass="list-view">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#handleNextPage" styleClass="button-box" text="&gt;" />
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#handleSendFriendRequest" styleClass="button-box" text="Send Friendship Request">
+               <font>
+                  <Font name="Candara Light" size="21.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

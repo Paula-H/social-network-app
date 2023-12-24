@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="container" stylesheets="@messageboxstyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetworkapp.controller.UpdateUser">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@background2.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="27.0" layoutY="14.0" prefHeight="314.0" prefWidth="546.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="546.0">
+               <children>
+                  <Label text="First Name">
+                     <font>
+                        <Font name="Candara Light" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="firstName" styleClass="list-view">
+                     <font>
+                        <Font name="Candara Light" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="546.0">
+               <children>
+                  <Label text="Last Name">
+                     <font>
+                        <Font name="Candara Light" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="lastName" styleClass="list-view">
+                     <font>
+                        <Font name="Candara Light" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="546.0">
+               <children>
+                  <Label text="Username">
+                     <font>
+                        <Font name="Candara Light" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="username" styleClass="list-view">
+                     <font>
+                        <Font name="Candara Light" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="546.0">
+               <children>
+                  <Label text="E-mail">
+                     <font>
+                        <Font name="Candara Light" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="75.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="email" styleClass="list-view">
+                     <font>
+                        <Font name="Candara Light" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="53.0" prefWidth="546.0">
+               <children>
+                  <Label text="Password">
+                     <font>
+                        <Font name="Candara Light" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="password" styleClass="list-view">
+                     <font>
+                        <Font name="Candara Light" size="19.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button layoutX="232.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="38.0" prefWidth="137.0" styleClass="button-box" text="Update User" AnchorPane.topAnchor="340.0">
+         <font>
+            <Font name="Candara Light" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

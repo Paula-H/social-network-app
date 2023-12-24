@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="container" stylesheets="@messageboxstyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetworkapp.controller.ChatHistory">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@background2.png" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="400.0" prefWidth="220.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true">
+               <VBox.margin>
+                  <Insets left="60.0" top="20.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@pngegg.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="220.0">
+               <children>
+                  <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="209.0">
+                     <font>
+                        <Font name="Candara Light" size="22.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="3.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <ListView fx:id="friendList" prefHeight="200.0" prefWidth="191.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="20.0" />
+               </VBox.margin>
+            </ListView>
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="220.0">
+               <opaqueInsets>
+                  <Insets bottom="200.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleLastPage" styleClass="button-box" text="&lt;" />
+                  <TextField fx:id="noOfElements" prefHeight="38.0" prefWidth="32.0" styleClass="list-view">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#handleNextPage" styleClass="button-box" text="&gt;" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="229.0" prefHeight="400.0" prefWidth="371.0">
+         <children>
+            <ListView fx:id="conversation" prefHeight="265.0" prefWidth="331.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="30.0" />
+               </VBox.margin>
+            </ListView>
+            <TextArea fx:id="messageArea" prefHeight="55.0" prefWidth="331.0" styleClass="list-view">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </VBox.margin>
+            </TextArea>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleSelectMultiple" prefHeight="37.0" prefWidth="141.0" styleClass="button-box" text="Send to Friends">
+                     <font>
+                        <Font name="Candara Light" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleSend" prefHeight="34.0" prefWidth="121.0" styleClass="button-box" text="Send Text">
+                     <font>
+                        <Font name="Candara Light" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

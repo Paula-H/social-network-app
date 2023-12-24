@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="container" stylesheets="@messageboxstyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetworkapp.controller.UserScreen">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@background2.png" />
+         </image>
+      </ImageView>
+      <TilePane layoutX="34.0" layoutY="26.0" prefHeight="344.0" prefWidth="229.0">
+         <children>
+            <VBox prefHeight="348.0" prefWidth="229.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="41.0" prefWidth="230.0" text="Friendship List">
+                     <font>
+                        <Font name="Candara Light" size="24.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="userListView" prefHeight="263.0" prefWidth="229.0" />
+                  <HBox alignment="CENTER" prefHeight="92.0" prefWidth="229.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleLastPage" styleClass="button-box" text="&lt;" />
+                        <TextField fx:id="noOfElements" prefHeight="38.0" prefWidth="38.0" styleClass="list-view">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#handleNextPage" styleClass="button-box" text="&gt;" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                      <Button mnemonicParsing="false" onAction="#handleDeleteFriend" prefHeight="37.0" prefWidth="126.0" styleClass="button-box" text="Delete  Friend">
+                           <font>
+                              <Font name="Candara Light" size="19.0" />
+                           </font></Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </TilePane>
+      <TilePane layoutX="298.0" layoutY="41.0" prefHeight="165.0" prefWidth="271.0">
+         <children>
+            <Label prefHeight="60.0" prefWidth="232.0" text="You're  currently logged in as: ">
+               <font>
+                  <Font name="Candara Light" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="loggedUsername" textFill="#ff0011">
+               <font>
+                  <Font name="Candara Light" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </TilePane>
+      <TilePane alignment="CENTER" layoutX="285.0" layoutY="200.0" prefHeight="129.0" prefWidth="293.0">
+         <children>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSeeChats" styleClass="button-box" text="See Chats">
+               <font>
+                  <Font name="Candara Light" size="19.0" />
+               </font>
+               <TilePane.margin>
+                  <Insets />
+               </TilePane.margin>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSendFriendshipRequest" styleClass="button-box" text="Send Friendship Request">
+               <font>
+                  <Font name="Candara Light" size="19.0" />
+               </font>
+               <TilePane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </TilePane.margin>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSeeFriendshipRequests" prefHeight="35.0" prefWidth="221.0" styleClass="button-box" text="See Friendship Requests">
+               <font>
+                  <Font name="Candara Light" size="19.0" />
+               </font>
+               <TilePane.margin>
+                  <Insets />
+               </TilePane.margin>
+            </Button>
+         </children>
+      </TilePane>
+   </children>
+</AnchorPane>
