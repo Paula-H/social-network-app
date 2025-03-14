@@ -1,5 +1,10 @@
 package com.example.socialnetworkapp.event;
 
 public enum ChangeEventType {
-    ADD,UPDATE,DELETE,ACCEPT,DECLINE,SEND;
+    ADD,
+    UPDATE,
+    DELETE,
+    ACCEPT,
+    DECLINE,
+    SEND;
 }

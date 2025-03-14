@@ -3,7 +3,6 @@ package com.example.socialnetworkapp.domain;
 public class FriendshipRequest extends Entity<Tuple<Long,Long>> {
     private User from;
     private User to;
-
     private String status;
 
     public FriendshipRequest(User from, User to){

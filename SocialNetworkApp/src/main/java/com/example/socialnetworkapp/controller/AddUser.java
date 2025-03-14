@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class AddUser implements Observer<EventImplementation> {
+public class AddUser {
     @FXML
     public TextField firstName;
     @FXML
@@ -20,13 +20,9 @@ public class AddUser implements Observer<EventImplementation> {
     public TextField email;
     @FXML
     public TextField password;
-
-
-
     private Service service = Service.getInstance();
 
     public AddUser() throws SQLException, ClassNotFoundException {
-        service.addObserver(this);
     }
 
     public void handleAdd() throws SQLException {
@@ -43,10 +39,5 @@ public class AddUser implements Observer<EventImplementation> {
         }
         User u = new User(firstName.getText(),lastName.getText(),username.getText(),email.getText(),password.getText());
         this.service.addUser(u);
-    }
-
-    @Override
-    public void update(EventImplementation event) {
-
     }
 }

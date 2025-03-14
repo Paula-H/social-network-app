@@ -25,26 +25,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserScreen implements Observer<EventImplementation> {
-
+    @FXML
+    TextField noOfElements = new TextField();
+    @FXML
+    ListView<User> userListView = new ListView<>();
+    @FXML
+    Label loggedUsername;
     User loggedUser;
-
     ObservableList<User> model = FXCollections.observableArrayList();
     private Service service = Service.getInstance();
-
     Page<User> page = null;
     int initialNumberPage = 1;
     int initialSizePage = 3;
-
-    PageableImplementation initialPageable = new PageableImplementation(initialNumberPage,initialSizePage);
-
-    @FXML
-    TextField noOfElements = new TextField();
-
-    @FXML
-    ListView<User> userListView = new ListView<>();
-
-    @FXML
-    Label loggedUsername;
 
     public UserScreen() throws SQLException, ClassNotFoundException {
 
@@ -65,81 +57,61 @@ public class UserScreen implements Observer<EventImplementation> {
                         throw new RuntimeException(e);
                     }
                 }
-
             }
         });
         noOfElements.setText("3");
-        //page = service.findAllUsers(initialNumberPage,initialSizePage);
         initModel();
     }
 
-    public void handleSendFriendshipRequest(){ sendFriendshipRequestScreen();}
+    public void handleSendFriendshipRequest(){
+        sendFriendshipRequestScreen();
+    }
 
-    public void handleSeeChats(){ showChatsDialogue();}
+    public void handleSeeChats(){
+        showChatsDialogue();
+    }
 
     private void showChatsDialogue() {
         try {
-            // create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/example/socialnetworkapp/chat-history.fxml"));
-
+            loader.setLocation(getClass()
+                    .getResource("/com/example/socialnetworkapp/chat-history.fxml"));
 
             AnchorPane root = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Send Friendship Request");
             dialogStage.initModality(Modality.WINDOW_MODAL);
 
-
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
-
-
 
             ChatHistory chatHistory = loader.getController();
             chatHistory.setLoggedUser(loggedUser);
 
             dialogStage.show();
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void sendFriendshipRequestScreen() {
         try {
-            // create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/com/example/socialnetworkapp/send-request.fxml"));
 
-
             AnchorPane root = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Send Friendship Request");
             dialogStage.initModality(Modality.WINDOW_MODAL);
 
-
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
-
-
 
             SendRequest sendRequest = loader.getController();
             sendRequest.setLoggedUser(loggedUser);
 
-
             dialogStage.show();
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -149,19 +121,38 @@ public class UserScreen implements Observer<EventImplementation> {
     }
 
     public void handleDeleteFriend() throws SQLException {
-        if (userListView.getSelectionModel().isEmpty()) {
-            MessageAlert.showMessage(null, Alert.AlertType.WARNING, "Selection Empty", "Please select an User first!");
+        if (userListView.
+                getSelectionModel()
+                .isEmpty()) {
+            MessageAlert.showMessage(
+                    null,
+                    Alert.AlertType.WARNING,
+                    "Selection Empty",
+                    "Please select an User first!");
             return;
         }
-
         User toBeDeleted = userListView.getSelectionModel().getSelectedItem();
         this.service.deleteFriendship(new Tuple(this.loggedUser.getId(),toBeDeleted.getId()));
-
     }
 
     public void handleNextPage() throws SQLException {
-        if(service.friendsForUser(page.nextPageable().getPageNumber(),page.nextPageable().getPageSize(), loggedUser.getId()).getContent().toList().isEmpty()){
-            MessageAlert.showMessage(null, Alert.AlertType.WARNING, "No more pages!", "No more pages!");
+        if(service.friendsForUser(
+                page
+                        .nextPageable()
+                        .getPageNumber(),
+                page
+                        .nextPageable()
+                        .getPageSize(),
+                loggedUser
+                        .getId())
+                .getContent()
+                .toList()
+                .isEmpty()){
+            MessageAlert.showMessage(
+                    null,
+                    Alert.AlertType.WARNING,
+                    "No more pages!",
+                    "No more pages!");
             return;
         }
         initialNumberPage++;
@@ -169,8 +160,14 @@ public class UserScreen implements Observer<EventImplementation> {
     }
 
     public void handleLastPage() throws SQLException {
-        if(page.getPageable().getPageNumber()==1){
-            MessageAlert.showMessage(null, Alert.AlertType.WARNING, "First page!", "Cannot go further than first page!");
+        if(page
+                .getPageable()
+                .getPageNumber() == 1){
+            MessageAlert.showMessage(
+                    null,
+                    Alert.AlertType.WARNING,
+                    "First page!",
+                    "Cannot go further than first page!");
             return;
         }
         initialNumberPage--;
@@ -180,8 +177,6 @@ public class UserScreen implements Observer<EventImplementation> {
     private void initModel() throws SQLException {
         model.clear();
         userListView.getItems().clear();
-
-        page = null;
         page = this.service.friendsForUser(initialNumberPage,initialSizePage, loggedUser.getId());
         List<User> friends = page.getContent().toList();
         ArrayList<User> userArrayList = new ArrayList<>();
@@ -204,14 +199,11 @@ public class UserScreen implements Observer<EventImplementation> {
 
     private void showFriendshipRequestsScreen(){
         try {
-            // create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/com/example/socialnetworkapp/friendship_requests.fxml"));
 
-
             AnchorPane root = (AnchorPane) loader.load();
 
-            // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Friendship Requests");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -219,21 +211,14 @@ public class UserScreen implements Observer<EventImplementation> {
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
 
-
             FriendshipRequestsController friendshipRequestsController = loader.getController();
             friendshipRequestsController.setLoggedUser(loggedUser);
 
-
             dialogStage.show();
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
 
     @Override
     public void update(EventImplementation friendshipRequestChangeEvent) {

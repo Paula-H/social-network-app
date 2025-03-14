@@ -2,6 +2,7 @@ package com.example.socialnetworkapp.domain;
 
 public class ReplyMessage extends Message{
     Long replyToID;
+
     public ReplyMessage(User from, String msg, Long replyToID) {
         super(from, msg);
         this.replyToID = replyToID;
@@ -9,10 +10,6 @@ public class ReplyMessage extends Message{
 
     public Long getReplyToID() {
         return replyToID;
-    }
-
-    public void setReplyToID(Long replyToID) {
-        this.replyToID = replyToID;
     }
 
     @Override

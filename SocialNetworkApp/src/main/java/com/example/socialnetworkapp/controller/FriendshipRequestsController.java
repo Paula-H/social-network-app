@@ -18,19 +18,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class FriendshipRequestsController implements Observer<EventImplementation> {
-    private User loggedUser;
-
-    private Service service = Service.getInstance();
-    ObservableList<FriendshipRequest> model = FXCollections.observableArrayList();
-
     @FXML
     TableView<FriendshipRequest> friendshipRequestTableView = new TableView<>();
-
     @FXML
     TableColumn<FriendshipRequest, String> fromColumn;
-
     @FXML
     private Label name = new Label();
+    private User loggedUser;
+    private Service service = Service.getInstance();
+    ObservableList<FriendshipRequest> model = FXCollections.observableArrayList();
 
     public FriendshipRequestsController() throws SQLException, ClassNotFoundException {
     }
@@ -44,24 +40,32 @@ public class FriendshipRequestsController implements Observer<EventImplementatio
 
     public void handleAccept() throws SQLException {
         if (friendshipRequestTableView.getSelectionModel().isEmpty()) {
-            MessageAlert.showMessage(null, Alert.AlertType.WARNING, "Selection Empty", "Please select a Friend Request First!");
+            MessageAlert.showMessage(
+                    null,
+                    Alert.AlertType.WARNING,
+                    "Selection Empty",
+                    "Please select a Friend Request First!");
             return;
         }
 
         FriendshipRequest fr = friendshipRequestTableView.getSelectionModel().getSelectedItem();
         this.service.proceedWithFriendRequest(new Tuple<>(fr.getFrom().getId(), fr.getTo().getId()), RequestStatus.accepted);
-        //initModel();
     }
 
     public void handleDecline() throws SQLException {
         if (friendshipRequestTableView.getSelectionModel().isEmpty()) {
-            MessageAlert.showMessage(null, Alert.AlertType.WARNING, "Selection Empty", "Please select a Friend Request First!");
+            MessageAlert.showMessage(
+                    null,
+                    Alert.AlertType.WARNING,
+                    "Selection Empty",
+                    "Please select a Friend Request First!");
             return;
         }
-
         FriendshipRequest fr = friendshipRequestTableView.getSelectionModel().getSelectedItem();
-        this.service.proceedWithFriendRequest(new Tuple<>(fr.getFrom().getId(), fr.getTo().getId()),RequestStatus.declined);
-        //initModel();
+        this.service.proceedWithFriendRequest(new Tuple<>(
+                fr.getFrom().getId(),
+                fr.getTo().getId()),
+                RequestStatus.declined);
     }
 
     private void initialize() throws SQLException {
@@ -73,7 +77,10 @@ public class FriendshipRequestsController implements Observer<EventImplementatio
     private void initModel() throws SQLException {
         model.clear();
         ArrayList<FriendshipRequest> pending = new ArrayList<>();
-        this.service.filterFriendshipRequests(loggedUser.getId(),RequestStatus.pending).forEach(pending::add);
+        this.service.filterFriendshipRequests(
+                loggedUser.getId(),
+                RequestStatus.pending)
+                .forEach(pending::add);
         model.addAll(pending);
     }
 

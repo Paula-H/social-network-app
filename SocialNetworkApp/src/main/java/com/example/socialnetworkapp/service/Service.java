@@ -29,19 +29,16 @@ import java.util.function.Predicate;
  */
 public class Service implements Observable<EventImplementation>,UserUtils,FriendshipUtils,FriendshipRequestUtils,PageableUtils,MessageUtils{
     private List<Observer<EventImplementation>> observers=new ArrayList<>();
-
     private UserPageableRepository userRepo;
     private FriendshipPageableRepository friendshipRepo;
     private FriendshipRequestPageableRepository friendshipRequestRepo;
     private MessageRepository messageRepo;
-
     private static Service instance = null;
     byte[] key = new byte[16];
 
     /*
         Singleton Pattern
      */
-
     private Service() throws SQLException, ClassNotFoundException {
         this.userRepo = (UserPageableRepository) RepositoryFactory.createRepository(RepositoryType.user);
         this.friendshipRepo = (FriendshipPageableRepository) RepositoryFactory.createRepository(RepositoryType.friendship);
@@ -60,7 +57,6 @@ public class Service implements Observable<EventImplementation>,UserUtils,Friend
         UserUtils implementation
      */
     private String encript(String strToEncrypt){
-        //secureRandom.nextBytes(key);
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         Cipher cipher = null;
         try {
@@ -325,7 +321,5 @@ public class Service implements Observable<EventImplementation>,UserUtils,Friend
                 throw new RuntimeException(e);
             }
         });
-
     }
-
 }

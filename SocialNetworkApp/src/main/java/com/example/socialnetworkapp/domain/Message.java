@@ -6,9 +6,7 @@ import java.util.ArrayList;
 public class Message extends Entity<Long>{
     protected User from;
     protected ArrayList<User> to = new ArrayList<>();
-
     protected String message;
-
     protected LocalDateTime date;
 
     public Message(User from, String message){

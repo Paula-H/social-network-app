@@ -6,5 +6,8 @@ package com.example.socialnetworkapp.repository;
  *  - used for the RepositoryFactory class
  */
 public enum RepositoryType {
-    user, friendship,friendship_request,message
+    user,
+    friendship,
+    friendship_request,
+    message
 }

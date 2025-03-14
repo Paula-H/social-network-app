@@ -23,27 +23,22 @@ import java.util.List;
 public class ChatHistory implements Observer<EventImplementation> {
     @FXML
     public Label name = new Label();
-    Page<User> page = null;
-    int initialNumberPage = 1;
-    int initialSizePage = 3;
     @FXML
     TextField noOfElements = new TextField();
     @FXML
     public ListView<HBox> conversation = new ListView<>();
-    ObservableList<HBox> model = FXCollections.observableArrayList();
-    private ArrayList<Message> messages = new ArrayList<>();
-
     @FXML
     public ListView<User> friendList= new ListView<>();
-
     @FXML
     public TextArea messageArea = new TextArea();
-
+    Page<User> page = null;
+    int initialNumberPage = 1;
+    int initialSizePage = 3;
+    ObservableList<HBox> model = FXCollections.observableArrayList();
+    private ArrayList<Message> messages = new ArrayList<>();
     private final ObservableList<User> friends = FXCollections.observableArrayList();
-
     private User loggedUser;
     private User selectedUser;
-
     private Service service = Service.getInstance();
 
     public ChatHistory() throws SQLException, ClassNotFoundException {
@@ -54,14 +49,8 @@ public class ChatHistory implements Observer<EventImplementation> {
         this.name.setText(loggedUser.getUsername());
 
         this.service.addObserver(this);
-        //his.messageService.conversationBetween(loggedUser,this.generalService.findOne(4L)).forEach(messages::add);
-
-//        for(int i=1;i<11;i++){
-//            this.messages.add(this.messageService.conversationBetween(loggedUser, this.generalService.findOne(4L)).get(i));
-//        }
 
         friendList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
         friendList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && friendList.getSelectionModel().getSelectedItems().size()==1) {
                 try {
@@ -71,6 +60,7 @@ public class ChatHistory implements Observer<EventImplementation> {
                 }
             }
         });
+
         noOfElements.setText("3");
         noOfElements.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -87,14 +77,16 @@ public class ChatHistory implements Observer<EventImplementation> {
             }
         });
 
-        //page = generalService.findAllPage(initialPageable);
         initializeFriendList();
-
     }
 
     public void handleSend() throws SQLException {
         if(messageArea.getText().isEmpty()){
-            MessageAlert.showMessage(null, Alert.AlertType.WARNING, "Empty Message", "You cannot send an empty message!");
+            MessageAlert.showMessage(
+                    null,
+                    Alert.AlertType.WARNING,
+                    "Empty Message",
+                    "You cannot send an empty message!");
             return;
         }
         this.service.sendMessage(this.loggedUser,this.selectedUser,messageArea.getText());
@@ -154,7 +146,6 @@ public class ChatHistory implements Observer<EventImplementation> {
 
     private void initializeFriendList() throws SQLException {
         friendList.getItems().clear();
-        //this.loggedUser.getFriend_list().stream().forEach(friends::add);
         friends.clear();
         page = null;
         page = this.service.friendsForUser(initialNumberPage,initialSizePage,this.loggedUser.getId());
@@ -180,7 +171,6 @@ public class ChatHistory implements Observer<EventImplementation> {
     private void initializeChat() throws SQLException {
         this.messages.clear();
         this.service.conversationBetween(loggedUser,selectedUser).forEach(this.messages::add);
-        //initializeFriendList();
         this.conversation.getItems().clear();
         if(this.messages.size()<=10){
         List<Message> mess= this.messages.subList(1,messages.size());
@@ -199,8 +189,6 @@ public class ChatHistory implements Observer<EventImplementation> {
                                 "-fx-background-radius: 15;\n" +
                                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);");
                         container.setAlignment(Pos.CENTER_RIGHT);
-
-
                     }
                     else{
                         label.setStyle("-fx-background-color: #ffebed;\n" +
@@ -212,7 +200,6 @@ public class ChatHistory implements Observer<EventImplementation> {
                         container.setAlignment(Pos.CENTER_LEFT);
                     }
                     this.model.add(container);
-
                 }
         );}
         else{
@@ -232,8 +219,6 @@ public class ChatHistory implements Observer<EventImplementation> {
                                     "-fx-background-radius: 15;\n" +
                                     "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);");
                             container.setAlignment(Pos.CENTER_RIGHT);
-
-
                         }
                         else{
                             label.setStyle("-fx-background-color: #ffebed;\n" +
@@ -245,20 +230,15 @@ public class ChatHistory implements Observer<EventImplementation> {
                             container.setAlignment(Pos.CENTER_LEFT);
                         }
                         this.model.add(container);
-
                     }
             );
-
         }
-
         this.conversation.setItems(model);
         conversation.scrollTo(conversation.getItems().size()-1);
     }
 
-
     @Override
     public void update(EventImplementation event) {
-
         Platform.runLater(() -> {
             try {
                 initializeChat();
@@ -266,6 +246,5 @@ public class ChatHistory implements Observer<EventImplementation> {
                 throw new RuntimeException(e);
             }
         });
-
     }
 }

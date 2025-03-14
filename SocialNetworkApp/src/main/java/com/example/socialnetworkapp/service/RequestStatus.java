@@ -5,5 +5,7 @@ package com.example.socialnetworkapp.service;
  *      - contains all the possibilities for the status field of a FriendshipRequest instance
  */
 public enum RequestStatus {
-    pending,accepted,declined
+    pending,
+    accepted,
+    declined
 }

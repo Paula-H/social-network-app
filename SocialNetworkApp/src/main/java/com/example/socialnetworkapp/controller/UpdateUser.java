@@ -20,7 +20,6 @@ public class UpdateUser implements Observer<EventImplementation> {
     public TextField email;
     @FXML
     public TextField password;
-
     Long IDforUpdate;
     private Service service = Service.getInstance();
 
@@ -44,7 +43,12 @@ public class UpdateUser implements Observer<EventImplementation> {
             password.clear();
             return;
         }
-        User u = new User(firstName.getText(),lastName.getText(),username.getText(),email.getText(),password.getText());
+        User u = new User(
+                firstName.getText(),
+                lastName.getText(),
+                username.getText(),
+                email.getText(),
+                password.getText());
         u.setId(IDforUpdate);
         this.service.modifyUser(u);
     }
